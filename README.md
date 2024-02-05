@@ -62,3 +62,10 @@ pip install -r requirements.txt
 ```
 OPENAI_API_KEY=your-api-key-here
 ```
+
+
+#### For testing audio equipment on rasberrypi
+arecord -l # listing all recording hardware devices connected to your rasberry pie
+
+arecord -D plughw:Device,0 -d 10 test.wav # for doing a test recording of 10 seconds that will save as a wav file -- 0 is usually the device number but your's might be different
+

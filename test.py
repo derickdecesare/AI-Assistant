@@ -1,6 +1,7 @@
 # Run this file to test the text completion API to ensure our API key is working
 from openai import OpenAI
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()  # This loads the environment variables from the .env file
 client = OpenAI() # This will automatically use the OPENAI_API_KEY from the environment so make sure to set it up in the .env file
@@ -18,20 +19,24 @@ client = OpenAI() # This will automatically use the OPENAI_API_KEY from the envi
 
 
 # Streaming example with chunk counter to visualize
-stream = client.chat.completions.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": "Write an essay on the importance of the internet in the 21st century."}],
-    stream=True,
+# stream = client.chat.completions.create(
+#     model="gpt-4",
+#     messages=[{"role": "user", "content": "Write an essay on the importance of the internet in the 21st century."}],
+#     stream=True,
+# )
+# chunkNumber = 1
+# for chunk in stream:
+#     if chunk.choices[0].delta.content is not None:
+#         print(f"Chunk {chunkNumber}: {chunk.choices[0].delta.content}")
+#         chunkNumber += 1
+
+
+
+# Testing speech to text
+audio_file= open("test.mp3", "rb")
+transcript = client.audio.transcriptions.create(
+  model="whisper-1", 
+  file=audio_file
 )
-chunkNumber = 1
-for chunk in stream:
-    if chunk.choices[0].delta.content is not None:
-        print(f"Chunk {chunkNumber}: {chunk.choices[0].delta.content}")
-        chunkNumber += 1
 
-
-
-
-
-
-        
+print(transcript)
