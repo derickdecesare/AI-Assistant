@@ -17,7 +17,6 @@ client = OpenAI() # This will automatically use the OPENAI_API_KEY from the envi
 # print(completion.choices[0].message.content)
 
 
-
 # Streaming example with chunk counter to visualize
 stream = client.chat.completions.create(
     model="gpt-4",
@@ -29,3 +28,10 @@ for chunk in stream:
     if chunk.choices[0].delta.content is not None:
         print(f"Chunk {chunkNumber}: {chunk.choices[0].delta.content}")
         chunkNumber += 1
+
+
+
+
+
+
+        
