@@ -7,15 +7,15 @@ load_dotenv()  # This loads the environment variables from the .env file
 client = OpenAI() # This will automatically use the OPENAI_API_KEY from the environment so make sure to set it up in the .env file
  
 # Basic completion example
-# completion = client.chat.completions.create(
-#   model="gpt-4", # gpt-3.5-turbo can also be used
-#   messages=[
-#     {"role": "system", "content": "You are a helpful assistant."},
-#     {"role": "user", "content": "Hello!"}
-#   ]
-# )
+completion = client.chat.completions.create(
+  model="gpt-4", # gpt-3.5-turbo can also be used
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Hello!"}
+  ]
+)
 
-# print(completion.choices[0].message.content)
+print(completion.choices[0].message.content)
 
 
 # Streaming example with chunk counter to visualize
@@ -33,10 +33,10 @@ client = OpenAI() # This will automatically use the OPENAI_API_KEY from the envi
 
 
 # Testing speech to text
-audio_file= open("test.mp3", "rb")
-transcript = client.audio.transcriptions.create(
-  model="whisper-1", 
-  file=audio_file
-)
+# audio_file= open("test.mp3", "rb")
+# transcript = client.audio.transcriptions.create(
+#   model="whisper-1", 
+#   file=audio_file
+# )
 
-print(transcript)
+# print(transcript)
